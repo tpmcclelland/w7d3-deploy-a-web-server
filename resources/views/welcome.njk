@@ -1,10 +1,80 @@
-{% extends 'master' %}
-
-{% block content %}
-  <div class="__banner">
-    <div class="banner__inner">
-      <img src="/assets/logo.svg">
-      <h2>Practical <span>Reliable</span> Productive</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Responsive Blog</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Stylesheets go here. -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/global.css" />
+</head>
+<body class="row">
+  <header class="col col-center header-container large-display-centered">
+          <div class="profile">
+            <img class="img-profile" src="./img/profile.jpg" alt="profile pic">
+          </div>
+          <div class="greeting">
+            <h3 class="text-opacity">HOWDIE</h3>
+          </div>
+          <div>
+            <p class="text-large">I'm Tom, problem solver <span class="text-normal text-opacity">&</span> developer</p>
+          </div>
+          <div>
+            <button class="btn">Let's Grab a Coffee <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+          </div>
+          <div class="row row-inline large-display-centered-footer">
+            <div class="col col-left">
+              <i class="fa fa-cloud"></i> <span class="text-opacity">Made by Tom McClelland</span>
+            </div>
+            <div class="col col-right">
+              <a href="#" target="_blank" class="fa fa-twitter text-white social-links"></a>
+              <a href="#" target="_blank" class="fa fa-github text-white social-links"></a>
+              <a href="#" target="_blank" class="fa fa-instagram text-white social-links"></a>
+              <a href="#" target="_blank" class="fa fa-linkedin text-white social-links"></a>
+              <a href="#" target="_blank" class="fa fa-dribbble text-white social-links"></a>
+            </div>
+          </div>
+  </header>
+  <main class="col">
+    <div class="row">
+      <div class="col col-3 large-display">
+        <h3 class="col__heading large-display">About Me</h3>
+      </div>
+      <section class="col col-9">
+        <h3 class="col__heading">About Me</h3>
+        <p class="section__text">
+          For the past 6 years I've helped global companies, organizations and start-ups reach business goals with user focused, iterative design. I enjoy bringing clarity to complex problems with a people first approach. These programs and skills help me along the way:
+        </p>
+        <ul class="list">
+          <li class="list__item"><i class="fa fa-chevron-right list__item__style" aria-hidden="true"></i> Sketch</li>
+          <li class="list__item"><i class="fa fa-chevron-right list__item__style" aria-hidden="true"></i> Adobe Suite</li>
+          <li class="list__item"><i class="fa fa-chevron-right list__item__style" aria-hidden="true"></i> HTML/CSS</li>
+          <li class="list__item"><i class="fa fa-chevron-right list__item__style" aria-hidden="true"></i> Sass</li>
+          <li class="list__item"><i class="fa fa-chevron-right list__item__style" aria-hidden="true"></i> BEM</li>
+          <li class="list__item"><i class="fa fa-chevron-right list__item__style" aria-hidden="true"></i> GitHub</li>
+          <li class="list__item"><i class="fa fa-chevron-right list__item__style" aria-hidden="true"></i> Invision App</li>
+        </ul>
+      </section>
     </div>
-  </div>
-{% endblock %}
+    <div class="row">
+      <div class="col col-3 large-display">
+        <h2 class="col__heading large-display">Projects</h2>
+      </div>
+      <div class="col col-9">
+        <h2 class="col__heading">Projects</h2>
+        <section>
+          <h3 class="section__heading">Pair Shaped <i class="fa fa-arrow-right blue-arrow" aria-hidden="true"></i></h3>
+          <p class="section__text">The team and i designed and build a website reflecting our missing to build real-time applications that connect people and things at the moment they happen.</p>
+        </section>
+        <section>
+          <h3 class="section__heading">Suzuki <i class="fa fa-arrow-right blue-arrow" aria-hidden="true"></i></h3>
+          <p class="section__text">Concept design work for Suzuki Canada's motorcycle line. Experimenting with some new ideas to showcase products with less clutter</p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://use.fontawesome.com/0de54c62ea.js"></script>
+</body>
+</html>

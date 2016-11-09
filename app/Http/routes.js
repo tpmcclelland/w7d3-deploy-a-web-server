@@ -18,3 +18,13 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+
+Route.get('/hobbies', 'HobbiesController.index')
+
+// Route.get('/hobbies', function * (request, response) {
+//     const format = request.format()
+//     if (format === 'html') {
+//         response.sendView('hobbies')
+//     }
+// })
+// .formats(['json','html'])
