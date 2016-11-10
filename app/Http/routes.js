@@ -23,6 +23,8 @@ Route.get('/hobbies', 'HobbiesController.index')
 
 Route.get('/user', 'UserController.show')
 
+Route.resource('/blog', 'BlogController')
+
 // Route.get('/hobbies', function * (request, response) {
 //     const format = request.format()
 //     if (format === 'html') {
