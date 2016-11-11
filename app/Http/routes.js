@@ -26,6 +26,7 @@ Route.get('/user', 'UserController.show')
 Route.resource('/blog', 'BlogController')
 
 Route.resource('/chats', 'ChatsController')
+Route.resource('/reactchats', 'ReactChatsController')
 
 // Route.get('/hobbies', function * (request, response) {
 //     const format = request.format()
