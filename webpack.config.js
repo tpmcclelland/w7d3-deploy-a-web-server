@@ -1,6 +1,6 @@
 module.exports = {
   entry: {
-    global: './public/js/global.js',
+    global: './resources/js/global.js',
   },
   output: {
     path: './public/js/',

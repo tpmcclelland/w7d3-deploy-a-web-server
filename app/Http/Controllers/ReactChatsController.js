@@ -8,10 +8,20 @@ class ReactChatsController {
 
   * index(request, response) {
     //
-    var chats = yield Chat.query().orderBy('id', 'desc')
-    yield response.sendView('reactChats', {
-      chats: chats
-    })
+    const type = request.format()
+
+    switch (type) {
+      case 'json':
+        var chats = yield Chat.query().orderBy('id', 'desc')
+        response.json(chats)
+        break
+      case 'html':
+        yield response.sendView('reactChats')
+        break
+      case null:
+        yield response.sendView('reactChats')
+        break
+    }
   }
 
   * store(request, response) {

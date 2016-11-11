@@ -21478,7 +21478,7 @@
 	                    _react2.default.createElement(
 	                        'label',
 	                        { htmlFor: 'message' },
-	                        'Message'
+	                        'Send Message'
 	                    ),
 	                    _react2.default.createElement('input', { type: 'text', id: 'message', name: 'message', className: 'form-control', value: '' })
 	                ),
@@ -21534,17 +21534,55 @@
 	    function Chats(props) {
 	        _classCallCheck(this, Chats);
 
-	        return _possibleConstructorReturn(this, (Chats.__proto__ || Object.getPrototypeOf(Chats)).call(this, props));
+	        var _this = _possibleConstructorReturn(this, (Chats.__proto__ || Object.getPrototypeOf(Chats)).call(this, props));
+
+	        _this.handleGetChats = _this.handleGetChats.bind(_this);
+	        _this.getChats = _this.getChats.bind(_this);
+	        _this.state = {
+	            chats: []
+	        };
+	        return _this;
 	    }
 
 	    _createClass(Chats, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            this.getChats();
+	        }
+	    }, {
+	        key: 'getChats',
+	        value: function getChats() {
+	            fetch('/reactchats.json', {
+	                method: 'GET',
+	                headers: {
+	                    'Content-Type': 'application/json'
+	                }
+	            }).then(function (response) {
+	                return response.json();
+	            }).then(this.handleGetChats);
+	        }
+	    }, {
+	        key: 'handleGetChats',
+	        value: function handleGetChats(response) {
+	            this.setState({
+	                chats: response
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var messages = this.state.chats.map(function (chat, i) {
+	                if (chat.message.includes('http')) {
+	                    return _react2.default.createElement(_ChatImage2.default, { image: chat.message, key: i });
+	                } else {
+	                    return _react2.default.createElement(_ChatText2.default, { message: chat.message, key: i });
+	                }
+	            });
+
 	            return _react2.default.createElement(
 	                'ul',
 	                { id: 'messages', className: 'list-group' },
-	                _react2.default.createElement(_ChatText2.default, { message: 'test' }),
-	                _react2.default.createElement(_ChatImage2.default, { image: 'http://i.giphy.com/wNlks0ID1igO4.gif' })
+	                messages
 	            );
 	        }
 	    }]);

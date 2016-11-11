@@ -10,7 +10,7 @@ class App extends React.Component {
     render() {
         return <div className="container">
             <div className="form-group">
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message">Send Message</label>
                 <input type="text" id="message" name="message" className="form-control" value=''/>
             </div>
             <div className="row-wrapper">
