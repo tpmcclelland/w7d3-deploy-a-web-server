@@ -83,7 +83,7 @@ module.exports = {
   csrf: {
     enable: true,
     methods: ['POST', 'PUT', 'DELETE'],
-    filterUris: ['/chats', '/blog'],
+    filterUris: ['/chats', '/blog', '/reactchats'],
     compareHostAndOrigin: true
   }
 

@@ -21463,10 +21463,51 @@
 	    function App(props) {
 	        _classCallCheck(this, App);
 
-	        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+	        _this.handlePostChange = _this.handlePostChange.bind(_this);
+	        _this.handleKeyPress = _this.handleKeyPress.bind(_this);
+	        _this.post = _this.post.bind(_this);
+	        _this.state = {
+	            post: ''
+	        };
+	        return _this;
 	    }
 
 	    _createClass(App, [{
+	        key: 'handlePostChange',
+	        value: function handlePostChange(e) {
+	            this.setState({
+	                post: e.target.value
+	            });
+	        }
+	    }, {
+	        key: 'handleKeyPress',
+	        value: function handleKeyPress(e) {
+
+	            if (e.key === 'Enter') {
+	                var message = this.state.post;
+	                this.setState({
+	                    post: ''
+	                });
+
+	                this.post(message);
+	            }
+	        }
+	    }, {
+	        key: 'post',
+	        value: function post(message) {
+	            fetch('/chats', {
+	                method: 'POST',
+	                body: JSON.stringify({
+	                    message: message
+	                }),
+	                headers: {
+	                    'Content-Type': 'application/json'
+	                }
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -21480,7 +21521,7 @@
 	                        { htmlFor: 'message' },
 	                        'Send Message'
 	                    ),
-	                    _react2.default.createElement('input', { type: 'text', id: 'message', name: 'message', className: 'form-control', value: '' })
+	                    _react2.default.createElement('input', { type: 'text', name: 'message', className: 'form-control', value: this.state.post, onChange: this.handlePostChange, onKeyPress: this.handleKeyPress })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -21538,6 +21579,8 @@
 
 	        _this.handleGetChats = _this.handleGetChats.bind(_this);
 	        _this.getChats = _this.getChats.bind(_this);
+	        _this.startPusher = _this.startPusher.bind(_this);
+	        // this.addChatMessage = this.addChatMessage.bind(this)
 	        _this.state = {
 	            chats: []
 	        };
@@ -21548,11 +21591,45 @@
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            this.getChats();
+	            this.startPusher();
 	        }
+	    }, {
+	        key: 'startPusher',
+	        value: function startPusher() {
+	            var _this2 = this;
+
+	            var pusher = new Pusher('001e13222340be518d6d', {
+	                encrypted: true
+	            });
+
+	            var pusherChannel = pusher.subscribe('chat_app');
+
+	            // pusherChannel.bind('new_chat', function(chat) {
+	            //   this.addChatMessage(chat)
+	            // })
+
+	            // I couldn't call my addChatMessage from here so I made it an arrow function instead.  Not sure this is right...
+	            pusherChannel.bind('new_chat', function (chat) {
+	                var newChats = _this2.state.chats;
+	                newChats.unshift(chat);
+	                _this2.setState({
+	                    chats: newChats
+	                });
+	            });
+	        }
+
+	        // addChatMessage(chat) {
+	        //     var newChats = this.state.chats
+	        //     newChats.unshift(chat.message)
+	        //     this.setState({
+	        //         chats: newChats
+	        //     })
+	        // }
+
 	    }, {
 	        key: 'getChats',
 	        value: function getChats() {
-	            fetch('/reactchats.json', {
+	            fetch('/chats.json', {
 	                method: 'GET',
 	                headers: {
 	                    'Content-Type': 'application/json'
