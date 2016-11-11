@@ -6,12 +6,17 @@
         <label for="message">Message</label>
         <input type="text" id="message" name="message" class="form-control" value=''/>
     </div>
-    <ul id="messages" class="list-group">
-        {% for chat in chats %}
-            <li class="list-group-item">{{chat.message}}</li>
-        {% endfor %}
-
-    </ul>
+    <div class="row-wrapper">
+           <ul id="messages" class="list-group">
+            {% for chat in chats %}
+                {%if chat.message.includes('http') %}
+                    <img src={{chat.message}} width=500 class="img-responsive thumbnail" alt="chat image" />
+                {% else %}
+                    <li class="list-group-item">{{chat.message}}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 
 
